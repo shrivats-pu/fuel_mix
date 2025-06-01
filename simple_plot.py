@@ -5,12 +5,11 @@ import requests
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta, UTC
 import time
+from constants import API_KEY, REPO_PATH, plot_path
 # this is a simple little script to grab data via gridstatusio and make an image of it, which I host on a GitHub Page
 # and allow my TRMNL screen to ping. This is functionally useless, as this same info exists elsewhere. This is basically
 # a 'hello world' for me to learn a little bit more about various self-hosting options and use cases for my TRMNL device
-plot_path = 'docs/pjm_fuel_mix.png'
-REPO_PATH = '/Users/arvindshrivats/Documents/Code/gridstatus/fuel_mix'
-client = GridStatusClient(api_key="6b526a97b5bc46238226f762b85392f5")
+client = GridStatusClient(api_key=API_KEY)
 DATE = "2025-01-01"
 def main():
     while True:
@@ -33,7 +32,7 @@ def main():
                     label=fuel.capitalize())
         plt.xlabel('Time')
         plt.ylabel('Fuel Mix Value')
-        plt.title('PJM Fuel Mix Over Last 24 Hours')
+        plt.title('PJM Fuel Mix Over Last 24 Hours ')
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
