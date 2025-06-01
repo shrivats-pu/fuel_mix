@@ -38,7 +38,7 @@ def main():
     plt.grid(True)
     plt.tight_layout()
     plt.gcf().set_size_inches(8, 4.8)
-    plt.savefig("docs/fuel_mix.png", dpi=100)
+    plt.savefig("docs/pjm_fuel_mix.png", dpi=100)
 
 if __name__ == '__main__':
     main()
