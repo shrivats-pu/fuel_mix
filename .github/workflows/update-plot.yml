@@ -1,0 +1,50 @@
+name: "Hourly Plot Update"
+
+# Runs at minute 0 of every hour (UTC). Adjust cron if you want a different UTC offset.
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Check out your repo so we can both run make_plot.py and push changes
+      - name: “Checkout Repo”
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # this allows push-back via GITHUB_TOKEN
+
+      # 2) Set up Python (adjust version as needed)
+      - name: “Set up Python 3.11”
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # 3) Install whatever your script needs (matplotlib, requests, etc.)
+      - name: “Install Dependencies”
+        run: |
+          python -m pip install --upgrade pip
+          pip install matplotlib requests gridstatusio
+
+      # 4) Run your plotting script (which writes to docs/plot.png)
+      - name: “Generate Plot”
+        env:
+          MY_API_KEY: ${{ secrets.MY_API_KEY }}
+        run: |
+          python make_plot.py
+
+      # 5) If docs/plot.png changed, commit & push
+      - name: “Commit & Push Plot”
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/plot.png
+          # Only commit if there is a diff
+          if ! git diff --cached --quiet; then
+            git commit -m "Hourly plot update $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          else
+            echo "No changes in docs/plot.png; skipping commit."
+          fi
