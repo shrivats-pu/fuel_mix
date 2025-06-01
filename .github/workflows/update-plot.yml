@@ -4,6 +4,7 @@ name: "Hourly Plot Update"
 on:
   schedule:
     - cron: "0 * * * *"
+  workflow_dispatch:   # <— this line allows manual runs
 
 jobs:
   build-and-deploy:
