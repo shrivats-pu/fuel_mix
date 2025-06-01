@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, UTC
 API_KEY = os.getenv("MY_API_KEY")
 if not API_KEY:
     sys.exit("ERROR: MY_API_KEY not set")
-    DATE = "2025-01-01"
+DATE = "2025-01-01"
 
 # this is a simple little script to grab data via gridstatusio and make an image of it, which I host on a GitHub Page
 # and allow my TRMNL screen to ping. This is functionally useless, as this same info exists elsewhere. This is basically
