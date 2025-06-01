@@ -8,12 +8,13 @@ import time
 # this is a simple little script to grab data via gridstatusio and make an image of it, which I host on a GitHub Page
 # and allow my TRMNL screen to ping. This is functionally useless, as this same info exists elsewhere. This is basically
 # a 'hello world' for me to learn a little bit more about various self-hosting options and use cases for my TRMNL device
-plot_path = 'INSERT PLOT PATH'
-REPO_PATH = 'INSERT LOCAL REPO PATH'
-client = GridStatusClient(api_key="{INSERT API KEY}")
+plot_path = 'docs/pjm_fuel_mix.png'
+REPO_PATH = '/Users/arvindshrivats/Documents/Code/gridstatus/fuel_mix'
+client = GridStatusClient(api_key="6b526a97b5bc46238226f762b85392f5")
+DATE = "2025-01-01"
 def main():
     while True:
-        dataset = client.get_dataset(dataset="pjm_fuel_mix_hourly", start="{INSERT DATE}")
+        dataset = client.get_dataset(dataset="pjm_fuel_mix_hourly", start=DATE)
     
         end_date = datetime.now(tz=UTC)
         start_date = end_date - timedelta(hours=24)
