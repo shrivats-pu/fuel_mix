@@ -14,8 +14,8 @@ DATE = "2025-01-01"
 # and allow my TRMNL screen to ping. This is functionally useless, as this same info exists elsewhere. This is basically
 # a 'hello world' for me to learn a little bit more about various self-hosting options and use cases for my TRMNL device
 def main():
-    client = GridStatusClient(api_key=API_KEY)
-    dataset = client.get_dataset(dataset="pjm_fuel_mix_hourly", start=DATE)
+    #client = GridStatusClient(api_key=API_KEY)
+    #dataset = client.get_dataset(dataset="pjm_fuel_mix_hourly", start=DATE)
 
     end_date = datetime.now(tz=UTC)
     start_date = end_date - timedelta(hours=24)
@@ -41,4 +41,5 @@ def main():
     plt.savefig("docs/pjm_fuel_mix.png", dpi=100)
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print('na')
