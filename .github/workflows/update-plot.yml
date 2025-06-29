@@ -1,6 +1,6 @@
-name: "Hourly Plot Update"
+name: "Daily Plot Update"
 
-# Runs at minute 0 of every hour (UTC). Adjust cron if you want a different UTC offset.
+# Runs at midnight each night
 on:
   schedule:
     - cron: "0 0 * * *"
