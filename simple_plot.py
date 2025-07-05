@@ -42,5 +42,4 @@ def main():
     plt.savefig("docs/pjm_fuel_mix.png", dpi=100)
 
 if __name__ == '__main__':
-    # main()
-    pass
+    main()
